@@ -5,16 +5,35 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./hooks": {
+      "import": "./dist/hooks/index.mjs",
+      "require": "./dist/hooks/index.js",
+      "types": "./dist/hooks/index.d.ts"
+    },
+    "./utils": {
+      "import": "./dist/utils/index.mjs",
+      "require": "./dist/utils/index.js",
+      "types": "./dist/utils/index.d.ts"
+    }
+  },
   "scripts": {
     "rollup": "rollup -c --bundleConfigAsCjs"
   },
   "author": "yankes",
+  "repository": "https://github.com/yankes404/fivem-react",
   "license": "ISC",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22.13.10",
     "react": "^19.0.0",
     "rollup-plugin-dts": "^6.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
