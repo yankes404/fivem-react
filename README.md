@@ -116,12 +116,6 @@ if (isProduction()) {
 }
 ```
 
-## Development
-### Building the package
-```sh
-npm run rollup
-```
-
 ### Repository
 [GitHub Repository](https://github.com/yankes404/fivem-react)
 
