@@ -1,6 +1,6 @@
 {
-  "name": "fivem-react",
-  "version": "0.0.1",
+  "name": "@yankes/fivem-react",
+  "version": "1.0.0",
   "description": "Library to develop easier and faster FiveM UI solutions.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -21,6 +21,9 @@
       "require": "./dist/utils/index.js",
       "types": "./dist/utils/index.d.ts"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "rollup": "rollup -c --bundleConfigAsCjs"
@@ -43,5 +46,6 @@
   "dependencies": {
     "@types/react": "^19.0.12",
     "react-dom": "^19.0.0"
-  }
+  },
+  "keywords": ["fivem", "fivem-ui", "fivem-react", "react", "ui", "nui", "yankes", "yankes404"]
 }

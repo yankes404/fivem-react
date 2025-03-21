@@ -6,20 +6,20 @@ import { useNuiMessage } from "./use-nui-message";
 interface MessageData {
     eventName: string;
     key: string;
-    display: boolean;
+    visible: boolean;
 }
 
-export const useDisplay = (
+export const useVisible = (
     key: string,
     initialValue: boolean | "DISPLAY_ON_DEVELOPMENT" = true
 ) => {
-    const [display, setDisplay] = useState(initialValue === "DISPLAY_ON_DEVELOPMENT" ? !isProduction() : initialValue);
+    const [visible, setVisible] = useState(initialValue === "DISPLAY_ON_DEVELOPMENT" ? !isProduction() : initialValue);
 
-    useNuiMessage<MessageData>("nui:display:update", (data?: MessageData) => {
+    useNuiMessage<MessageData>("nui:visible:update", (data?: MessageData) => {
         if (data && data.key === key) {
-            setDisplay(data.display);
+            setVisible(data.visible);
         }
     });
 
-    return display;
+    return visible;
 }
