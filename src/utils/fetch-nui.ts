@@ -1,9 +1,11 @@
 import { getResourceUrl } from "./get-resource-url";
 import { isProduction } from "./is-production";
 
+export type FetchNuiBody = string | number | boolean | Array<unknown> | Record<string, unknown>;
+
 export const fetchNui = (
-    url: string,
-    body?: string | number | boolean | Array<unknown> | Record<string, unknown>
+    endpoint: string,
+    body?: FetchNuiBody
 ) => {
     if (!isProduction()) {
         return Promise.resolve();
@@ -13,7 +15,7 @@ export const fetchNui = (
         throw new Error('fetch is not defined');
     }
 
-    return fetch(getResourceUrl(url), {
+    return fetch(getResourceUrl(endpoint), {
         method: "POST",
         body: body ? JSON.stringify(body) : undefined
     });
