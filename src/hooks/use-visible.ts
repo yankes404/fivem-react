@@ -4,6 +4,8 @@ import { isProduction } from "../utils/is-production";
 import { useNuiMessage } from "./use-nui-message";
 import { useNuiMutation } from "./use-nui-mutation";
 
+export type InitialVisible = boolean | "DISPLAY_ON_DEVELOPMENT";
+
 interface MessageData {
     eventName: string;
     key: string;
@@ -12,7 +14,7 @@ interface MessageData {
 
 export const useVisible = (
     key: string,
-    initialValue: boolean | "DISPLAY_ON_DEVELOPMENT" = true
+    initialValue: InitialVisible = true
 ) => {
     const [visible, setVisible] = useState(initialValue === "DISPLAY_ON_DEVELOPMENT" ? !isProduction() : initialValue);
     const {

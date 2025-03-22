@@ -116,6 +116,39 @@ if (isProduction()) {
 }
 ```
 
+## Components
+
+### `VisibleElement`
+Handles UI visibility with smooth transitions.
+```tsx
+import { VisibleElement } from "@yankes/fivem-react";
+
+const MyComponent = () => {
+    return (
+        <VisibleElement key="my-ui" onOpen={() => console.log("Opened")} onClose={() => console.log("Closed")}>
+            <div>My Visible UI</div>
+        </VisibleElement>
+    );
+};
+```
+
+### `VisibleButton`
+A button component that automatically closes the `VisibleElement` when clicked.
+```tsx
+import { VisibleElement, VisibleButton } from "@yankes/fivem-react";
+
+const MyComponent = () => {
+    return (
+        <VisibleElement key="my-ui">
+            <div>
+                My Visible UI
+                <VisibleButton>Close</VisibleButton>
+            </div>
+        </VisibleElement>
+    );
+};
+```
+
 ### Repository
 [GitHub Repository](https://github.com/yankes404/fivem-react)
 

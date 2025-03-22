@@ -70,6 +70,23 @@ export default [
     external
   },
   {
+    input: "src/components/index.ts",
+    output: [
+      {
+        file: "dist/components/index.js",
+        format: 'cjs',
+        sourcemap: true
+      },
+      {
+        file: "dist/components/index.mjs",
+        format: 'esm',
+        sourcemap: true
+      }
+    ],
+    plugins,
+    external
+  },
+  {
     input: "src/index.ts",
     output: [{ file: packageJson.types }],
     plugins: [dts.default()]
@@ -82,6 +99,11 @@ export default [
   {
     input: "src/utils/index.ts",
     output: [{ file: "dist/utils/index.d.ts" }],
+    plugins: [dts.default()]
+  },
+  {
+    input: "src/components/index.ts",
+    output: [{ file: "dist/components/index.d.ts" }],
     plugins: [dts.default()]
   }
 ];
