@@ -152,5 +152,8 @@ const MyComponent = () => {
 ### Repository
 [GitHub Repository](https://github.com/yankes404/fivem-react)
 
+### NPM Post
+[NPM Post](https://www.npmjs.com/package/@yankes/fivem-react)
+
 ## License
 This project is licensed under the ISC License.
