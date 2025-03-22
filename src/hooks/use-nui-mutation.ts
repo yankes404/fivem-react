@@ -10,20 +10,20 @@ interface Options {
     onFinally?: () => void | null | undefined;
 }
 
-export const useNuiMutation = (
-    endpoint: string,
-    options?: Options
-) => {
+export const useNuiMutation = () => {
     const [isPending, startTransition] = useTransition();
 
-    const mutate = useCallback(() => {
+    const mutate = useCallback((
+        endpoint: string,
+        options?: Options
+    ) => {
         startTransition(() => {
             fetchNui(endpoint, options?.body)
                 .then(options?.onSuccess)
                 .catch(options?.onError)
                 .finally(options?.onFinally);
         });
-    }, [endpoint, options]);
+    }, []);
 
     return {
         mutate,
