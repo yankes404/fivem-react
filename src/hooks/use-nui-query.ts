@@ -10,7 +10,7 @@ interface Options {
     onFinally?: () => void | null | undefined;
 }
 
-export const useNuiFetch = (
+export const useNuiQuery = (
     endpoint: string,
     options?: Options
 ) => {
