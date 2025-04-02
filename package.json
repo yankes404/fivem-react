@@ -1,6 +1,6 @@
 {
   "name": "@yankes/fivem-react",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Library to develop easier and faster FiveM UI solutions.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

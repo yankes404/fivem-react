@@ -1,3 +1,4 @@
+import { getResourceName } from "./get-resource-name";
 import { getResourceUrl } from "./get-resource-url";
 import { isProduction } from "./is-production";
 
@@ -15,7 +16,7 @@ export const fetchNui = (
         throw new Error('fetch is not defined');
     }
 
-    return fetch(getResourceUrl(endpoint), {
+    return fetch(`${getResourceName()}${endpoint}`, {
         method: "POST",
         body: body ? JSON.stringify(body) : undefined
     });
