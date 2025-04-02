@@ -5,6 +5,7 @@ import { fetchNui } from "../utils/fetch-nui";
 
 interface Options {
     body?: FetchNuiBody;
+    asHttp?: boolean;
     onSuccess?: (value: Response | void) => void | PromiseLike<void>;
     onError?: (reason: unknown) => void | PromiseLike<void> | null | undefined;
     onFinally?: () => void | null | undefined;
@@ -18,7 +19,7 @@ export const useNuiQuery = (
 
     useEffect(() => {
         startTransition(() => {
-            fetchNui(endpoint, options?.body)
+            fetchNui(endpoint, options?.body, options?.asHttp)
                 .then(options?.onSuccess)
                 .catch(options?.onError)
                 .finally(options?.onFinally);
