@@ -1,3 +1,3 @@
-declare function GetResourceParentName(): string;
+declare function GetParentResourceName(): string;
 
-export const getResourceName = () => GetResourceParentName();
+export const getResourceName = () => GetParentResourceName();
