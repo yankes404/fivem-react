@@ -1,17 +1,11 @@
-import { forwardRef } from "react";
+import { openUrl } from "../utils";
 
-import { openUrl } from "../utils/open-url";
-
-type LinkProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-    href: string;
-}
-
-const Link = forwardRef<HTMLButtonElement, LinkProps>(({
+function Link ({
+    children,
     href,
     onClick,
-    children,
     ...props
-}, ref) => {
+}: React.ComponentProps<"button"> & { href: string }) {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         openUrl(href);
         onClick?.(e);
@@ -19,15 +13,12 @@ const Link = forwardRef<HTMLButtonElement, LinkProps>(({
 
     return (
         <button
-            ref={ref}
             onClick={handleClick}
             {...props}
         >
             {children}
         </button>
     )
-});
+}
 
-Link.displayName = "Link";
-
-export { Link };
+export { Link }

@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useNuiMessage } from "./use-nui-message";
 
 export const useNuiData = <T>(
-    key: string,
+    dataId: string,
     initialValue?: T
 ) => {
     const [data, setData] = useState<T | undefined>(initialValue);
 
-    useNuiMessage<{ eventName: string; key: string; data: T }>("nui:data:update", (data?: { eventName: string; key: string; data: T }) => {
-        if (data && data.key === key) {
+    useNuiMessage<{ eventName: string; dataId: string; data: T }>("nui:data:update", (data?: { eventName: string; dataId: string; data: T }) => {
+        if (data && data.dataId === dataId) {
             setData(data.data);
         }
     });
