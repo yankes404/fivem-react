@@ -1,7 +1,7 @@
 import { useEffect } from "react"
-import { useNuiData, useNuiMessage } from "fivem-react/hooks";
+import { useNuiData, useNuiMessage, useVisible } from "fivem-react/hooks";
 import { getResourceUrl } from "fivem-react/utils";
-import { VisibleElement, VisibleButton } from "fivem-react/components";
+import { VisibleElement, VisibleClose } from "fivem-react/components";
 
 export const App = () => {
     useNuiMessage("test", (data) => console.log(data));
@@ -10,13 +10,19 @@ export const App = () => {
         window.postMessage({ eventName: "nui:data:update", key: "users", data: ["adam", "kinkle", "honkey"] });
     }, []);
 
+    // const { visible } = useVisible("test", false);
+
+    useEffect(() => {
+        // window.postMessage({ eventName: "nui:visible:update", elementId: "test", visible: false });
+    }, []);
+
     // const data = useNuiData<string[]>("users", ["adam"]);
 
     return (
         <div>
             {/* {data?.toString()} */}
             {/* {getResourceUrl("test")} */}
-            <VisibleElement
+            {/* <VisibleElement
                 key="test"
                 initialValue={true}
                 style={{ 
@@ -32,6 +38,12 @@ export const App = () => {
                 <VisibleButton>
                     x
                 </VisibleButton>
+            </VisibleElement> */}
+            <VisibleElement elementId="test" initialValue={true}>
+                test
+                <VisibleClose>
+                    x
+                </VisibleClose>
             </VisibleElement>
         </div>
     )

@@ -1,5 +1,5 @@
 export {
     VisibleElement,
-    VisibleButton
+    VisibleClose
 } from "./visible";
 export { Link } from "./link";

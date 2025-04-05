@@ -8,28 +8,34 @@ export type InitialVisible = boolean | "DISPLAY_ON_DEVELOPMENT";
 
 interface MessageData {
     eventName: string;
-    key: string;
+    elementId: string;
     visible: boolean;
 }
 
+interface VisibleStore {
+    visible: boolean;
+    setVisible: (visible: boolean) => void;
+}
+
 export const useVisible = (
-    key: string,
+    elementId: string,
     initialValue: InitialVisible = true
 ) => {
-    const [visible, setVisible] = useState(initialValue === "DISPLAY_ON_DEVELOPMENT" ? !isProduction() : initialValue);
+    const [visible, setVisible] = useState(() => initialValue === "DISPLAY_ON_DEVELOPMENT" ? !isProduction() : initialValue === true);
+
     const {
         mutate,
         isPending: isClosing
     } = useNuiMutation();
 
     useNuiMessage<MessageData>("nui:visible:update", (data?: MessageData) => {
-        if (data && data.key === key) {
+        if (data && data.elementId === elementId) {
             setVisible(data.visible);
         }
     });
 
     const close = () => mutate("/nui:visible:close", {
-        body: { key },
+        body: { elementId },
         onSuccess: () => setVisible(false)
     });
 

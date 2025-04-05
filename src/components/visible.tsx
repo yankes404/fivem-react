@@ -1,17 +1,7 @@
-import { createContext, forwardRef, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect } from "react";
+
 import { InitialVisible, useVisible } from "../hooks/use-visible";
 import { cn } from "../lib/utils";
-
-type VisibleElementProps = React.HTMLAttributes<HTMLDivElement> & {
-    key: string;
-    initialValue?: InitialVisible;
-    closedStyles?: React.CSSProperties;
-    closedClassName?: string;
-    closingStyles?: React.CSSProperties;
-    closingClassName?: string;
-    onOpen?: () => void;
-    onClose?: () => void;
-}
 
 type ContextProps = {
     visible: boolean;
@@ -25,8 +15,19 @@ const VisibleContext = createContext<ContextProps>({
     isClosing: false
 });
 
-const VisibleElement = forwardRef<HTMLDivElement, VisibleElementProps>(({
-    key,
+export type VisibleElementProps = React.ComponentProps<"div"> & {
+    elementId: string;
+    initialValue?: InitialVisible;
+    closedStyles?: React.CSSProperties;
+    closedClassName?: string;
+    closingStyles?: React.CSSProperties;
+    closingClassName?: string;
+    onOpen?: () => void;
+    onClose?: () => void;
+}
+
+function VisibleElement ({
+    elementId,
     initialValue = "DISPLAY_ON_DEVELOPMENT",
     children,
     style,
@@ -38,12 +39,12 @@ const VisibleElement = forwardRef<HTMLDivElement, VisibleElementProps>(({
     onOpen,
     onClose,
     ...props
-}, ref) => {
+}: VisibleElementProps) {
     const {
         visible,
         close,
         isClosing
-    } = useVisible(key, initialValue);
+    } = useVisible(elementId, initialValue);
 
     useEffect(() => {
         if (visible && onOpen) onOpen();
@@ -55,7 +56,6 @@ const VisibleElement = forwardRef<HTMLDivElement, VisibleElementProps>(({
             value={{ visible, close, isClosing }}
         >
             <div
-                ref={ref}
                 className={cn(
                     className,
                     isClosing && closingClassName,
@@ -74,14 +74,9 @@ const VisibleElement = forwardRef<HTMLDivElement, VisibleElementProps>(({
             </div>
         </VisibleContext.Provider>
     )
-});
+}
 
-VisibleElement.displayName = "VisibleElement";
-
-const VisibleButton = forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(({
-    children,
-    ...props
-}, ref) => {
+function VisibleClose ({ children, ...props }: React.ComponentProps<"button">) {
     const {
         visible,
         close,
@@ -90,7 +85,6 @@ const VisibleButton = forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<H
 
     return (
         <button
-            ref={ref}
             onClick={close}
             disabled={isClosing || !visible}
             {...props}
@@ -98,11 +92,9 @@ const VisibleButton = forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<H
             {children}
         </button>
     )
-});
-
-VisibleButton.displayName = "VisibleButton";
+}
 
 export {
     VisibleElement,
-    VisibleButton 
+    VisibleClose,
 }
