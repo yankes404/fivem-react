@@ -12,11 +12,6 @@ interface MessageData {
     visible: boolean;
 }
 
-interface VisibleStore {
-    visible: boolean;
-    setVisible: (visible: boolean) => void;
-}
-
 export const useVisible = (
     elementId: string,
     initialValue: InitialVisible = true
