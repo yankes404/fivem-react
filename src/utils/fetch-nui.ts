@@ -16,7 +16,7 @@ export const fetchNui = (
         throw new Error('fetch is not defined');
     }
 
-    return fetch(`${asHttp ? "http" : "https"}://${getResourceName()}${endpoint}`, {
+    return fetch(`${asHttp ? "http" : "https"}://${getResourceName()}/${endpoint}`, {
         method: "POST",
         body: body ? JSON.stringify(body) : undefined
     });
