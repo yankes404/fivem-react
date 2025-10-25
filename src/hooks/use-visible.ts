@@ -29,7 +29,7 @@ export const useVisible = (
         }
     });
 
-    const close = () => mutate("/nui:visible:close", {
+    const close = () => mutate("nui:visible:close", {
         body: { elementId },
         onSuccess: () => setVisible(false)
     });
